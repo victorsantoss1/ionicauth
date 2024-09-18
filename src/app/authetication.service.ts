@@ -78,3 +78,4 @@ async updateUserName(newName: string): Promise<void> {
     }
   }
 }
+
