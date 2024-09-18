@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <div class="header">
+    <ion-title>Bem vindo</ion-title>
+    <p>Crie sua conta</p>
+  </div>
+  
+  <form [formGroup]="regForm" novalidate>
+    <div class="ion-padding">
+
+      <div *ngIf="regForm.controls['fullname'].touched && regForm.controls['fullname'].invalid">
+        <ion-text color="danger" >
+          O Nome é obrigatório
+        </ion-text>
+      </div>
+
+
+      <ion-item>
+        <ion-input formControlName="fullname" placeholder="Nome" class="input"></ion-input>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+
+      <div *ngIf="regForm.controls['email'].touched && regForm.controls['email'].invalid">
+        <ion-text color="danger" >
+          O email é obrigatório
+        </ion-text>
+       
+      </div>
+
+      
+      <ion-item>
+        <ion-input formControlName="email" placeholder="Email" class="input"></ion-input>
+        <ion-icon name="mail-outline"></ion-icon>
+      </ion-item>
+
+      <div *ngIf="regForm.controls['password'].touched && regForm.controls['password'].invalid">
+        <ion-text color="danger" >
+         A senha é obrigatória
+        </ion-text>
+       
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="password" placeholder="Senha" class="input" type="password"></ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+
+      <div>
+        <p>Já possui conta? <a [routerLink]="['/login']">Logar</a></p>
+      </div>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px;">
+      <ion-fab-button (click)="singUp()">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>

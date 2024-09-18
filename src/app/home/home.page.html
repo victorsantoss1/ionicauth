@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Usuário
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Usuário</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="container" class="ion-padding">
+    <ion-button (click)="logout()">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      Sair
+    </ion-button>
+
+    <!-- Botão para excluir o usuário -->
+    <ion-button color="danger" (click)="deleteUser()">
+      <ion-icon name="trash-bin-outline"></ion-icon>
+      Excluir Conta
+    </ion-button>
+
+    <!-- Botão para editar o nome do usuário -->
+    <ion-button color="primary" (click)="editUserName()" >
+      <ion-icon slot="start" name="create"></ion-icon>
+      Editar Nome
+    </ion-button>
   </div>
 </ion-content>
