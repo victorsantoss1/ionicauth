@@ -43,6 +43,10 @@ export class LoginPage implements OnInit {
     return this.loginForm.controls;
   }
 
+  async logout() {
+    await this.router.navigate(['landing']);
+  }
+
   async login() {
     const loading = await this.loadingCtrl.create({
       message: 'Please wait...', // Mensagem exibida durante o carregamento
@@ -68,6 +72,24 @@ export class LoginPage implements OnInit {
     } else {
       // Se o formulário não for válido, ainda assim fechar o carregamento
       loading.dismiss();
+    }
+  }
+
+  async loginWithGoogle() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Fazendo login com Google...',
+      spinner: 'crescent'
+    });
+    await loading.present();
+
+    try {
+      await this.authService.loginWithGoogle();
+      await this.router.navigate(['/home']); // Redireciona para a página inicial após o login
+    } catch (error) {
+      console.error('Erro ao fazer login com Google:', error);
+      
+    } finally {
+      loading.dismiss(); // Garante que o carregamento será fechado independentemente do resultado
     }
   }
 }
