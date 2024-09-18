@@ -11,6 +11,12 @@ export class AutheticationService {
 
   constructor(private afAuth: AngularFireAuth, private firestoreService: FirestoreService ) { }
 
+    // Fazer login com Google
+    async loginWithGoogle(): Promise<firebase.auth.UserCredential> {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      return await this.afAuth.signInWithPopup(provider);
+    }
+
   // Obter o usuário atual
   async getCurrentUser(): Promise<firebase.User | null> {
     return await this.afAuth.currentUser;
