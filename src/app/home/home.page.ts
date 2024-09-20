@@ -14,10 +14,24 @@ export class HomePage {
   constructor(
     private loadingCtrl: LoadingController, //cria carregamentos spiners que indicam ao usuário que uma operação está em andamento
     private authService: AutheticationService, // metodo de autentificaçao de usuario (login,logout,registro)
-    private firestoreService: FirestoreService,
-    private router: Router,
-    private alertCtrl: AlertController
+    private firestoreService: FirestoreService, //é usado para interagir com o Firestore
+    private router: Router, //responsável pela navegação entre diferentes componentes ou páginas da aplicação
+    private alertCtrl: AlertController // Esse serviço é usado para criar e gerenciar alertas (pop-ups) que informam os usuários sobre eventos ou erros.
   ) {}
+
+  async loginWithGoogle() {
+    const loading = await this.createLoading('Fazendo login...');
+    try {
+      await this.authService.loginWithGoogle();
+      await this.router.navigate(['/home']); // Redirecione para a página inicial após o login
+    } catch (error) {
+      console.error('Erro ao fazer login com Google:', error);
+      await this.showAlert('Erro', 'Não foi possível fazer login com Google. Tente novamente.');
+    } finally {
+      await loading.dismiss();
+      
+    }
+  }
 
   async logout() {
     await this.router.navigate(['landing']);
